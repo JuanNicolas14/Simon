@@ -1,2 +1,2 @@
 # my_first_repo
-Chupelo malparido
+Mi primer repositorio.
