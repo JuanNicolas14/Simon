@@ -6,7 +6,7 @@ const puntos = 0
 const btnEmpezar = document.getElementById('btnEmpezar')
 const ULTIMO_NIVEL = 20
 
-swal('Informacion', `El juego consiste en repetir la secuencia de colores, cada nivel se aumentara un color mas, son 20 niveles. \n ¿ Crees poder lograrlo ?`, 'info')
+swal('Informacion', `El juego consiste en repetir la secuencia de colores, cada nivel se aumentara un color mas, son 20 niveles... \n ¿ Crees poder lograrlo ?`, 'info')
 
 class Juego {
   constructor() {
