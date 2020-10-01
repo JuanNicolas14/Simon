@@ -84,3 +84,11 @@ body {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+h1{
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 16px;
+  margin: 10px;
+}

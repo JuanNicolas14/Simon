@@ -4,9 +4,9 @@ const naranja = document.getElementById('naranja')
 const verde = document.getElementById('verde')
 const puntos = 0
 const btnEmpezar = document.getElementById('btnEmpezar')
-const ULTIMO_NIVEL = 200
+const ULTIMO_NIVEL = 20
 
-swal('Informacion', 'El juego consiste en repetir la secuencia de colores, cada nivel se aumentara un color mas.', 'success')
+swal('Informacion', 'El juego consiste en repetir la secuencia de colores, cada nivel se aumentara un color mas.', 'info')
 
 class Juego {
   constructor() {
@@ -111,7 +111,7 @@ class Juego {
     this.iluminarColor(nombreColor)
     if(numeroColor === this.secuencia[this.subnivel]) {
       this.subnivel++
-      this.puntos += 10
+      this.puntos += 20
       if (this.subnivel === this.nivel) {
         this.nivel++
         this.puntos += 50
@@ -121,7 +121,7 @@ class Juego {
           this.ganoElJuego()
         }else {
           swal("Excelente !!", `Tu puntuacion actual: ${this.puntos} puntos \n Siguiente Nivel: ${this.nivel}`, "success")
-            .then(() => setTimeout(this.siguienteNivel, 1000))
+            .then(() => setTimeout(this.siguienteNivel, 700))
         }
       }
     }else {
@@ -131,12 +131,12 @@ class Juego {
   }
 
   ganoElJuego() {
-    swal('Simon dice:','Buen socio, gano ñero!', 'success')
+    swal('Ganaste !!','Felicitaciones, sabia que lo lograrias.', 'success')
       .then(this.inicializar)
   }
 
   perdioElJuego() {
-    swal('Simon dice',`Paila ñerito, perdio :(, Su puntaje fue de: ${this.puntos} puntos`, 'error')
+    swal('Oh, perdiste! :(',`Continua intentandolo, Tu puntaje fue de: ${this.puntos} puntos`, 'error')
       .then(()=> {
         this.eliminarEventosClick()
         this.inicializar()
