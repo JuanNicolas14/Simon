@@ -2,8 +2,11 @@ const celeste = document.getElementById('celeste')
 const violeta = document.getElementById('violeta')
 const naranja = document.getElementById('naranja')
 const verde = document.getElementById('verde')
+const puntos = 0
 const btnEmpezar = document.getElementById('btnEmpezar')
-const ULTIMO_NIVEL = 10 
+const ULTIMO_NIVEL = 200
+
+swal('Informacion', 'El juego consiste en repetir la secuencia de colores, cada nivel se aumentara un color mas.', 'success')
 
 class Juego {
   constructor() {
@@ -18,12 +21,14 @@ class Juego {
     this.elegirColor = this.elegirColor.bind(this)
     this.toogleBtnEmpezar()
     this.nivel = 1
+    this.puntos = 0
     this.colores = {
       celeste,
       violeta,
       naranja,
       verde
     }
+    
   }
 
   toogleBtnEmpezar() {
@@ -79,7 +84,7 @@ class Juego {
 
   iluminarColor(color) {
     this.colores[color].classList.add('light')
-    setTimeout(() => this.apagarColor(color), 350)
+    setTimeout(() => this.apagarColor(color), 250)
   }
 
   apagarColor(color) {
@@ -106,14 +111,17 @@ class Juego {
     this.iluminarColor(nombreColor)
     if(numeroColor === this.secuencia[this.subnivel]) {
       this.subnivel++
+      this.puntos += 10
       if (this.subnivel === this.nivel) {
         this.nivel++
+        this.puntos += 50
         this.eliminarEventosClick()
         if (this.nivel === (ULTIMO_NIVEL + 1)) {
           // Gano !
           this.ganoElJuego()
         }else {
-          setTimeout(this.siguienteNivel, 1500)
+          swal("Excelente !!", `Tu puntuacion actual: ${this.puntos} puntos \n Siguiente Nivel: ${this.nivel}`, "success")
+            .then(() => setTimeout(this.siguienteNivel, 1000))
         }
       }
     }else {
@@ -123,18 +131,17 @@ class Juego {
   }
 
   ganoElJuego() {
-    swal('Frito dice:','Buen socio, gano ñero!', 'success')
+    swal('Simon dice:','Buen socio, gano ñero!', 'success')
       .then(this.inicializar)
   }
 
   perdioElJuego() {
-    swal('Frito dice','Paila ñerito, perdio :(', 'error')
+    swal('Simon dice',`Paila ñerito, perdio :(, Su puntaje fue de: ${this.puntos} puntos`, 'error')
       .then(()=> {
         this.eliminarEventosClick()
         this.inicializar()
       })
   }
-
 
 }
 
